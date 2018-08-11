@@ -168,3 +168,6 @@ function closeHelp() {
 
 //document.querySelector('.player-' + prevPlayer + '-panel').classList.remove('active');
 //document.querySelector('.player-' + activePlayer + '-panel').classList.add('active');
+
+// if(var) does not check to see if var is true, it checks to see if var exists.
+//  i.e is not null, undefined, "" or 0
