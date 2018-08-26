@@ -55,7 +55,7 @@ var jane = Object.create(personProto,
   job: { value: 'Designer' }
 });
 
-// objects are references to memory, whereas pointers are true values
+// objects are references to memory, whereas primitives are true values
 
 var obj1 = {
   value: 'hi'
