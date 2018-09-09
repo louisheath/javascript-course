@@ -94,3 +94,8 @@ Given a css selector as paramater, it finds the nearest ancestor matching that s
 Placing this in an HTML element allows us to store data in the template.
 
 E.g. `<... data-foo=1 />` can be retrieved in JS with `const foo = el.datasets.foo;`
+
+
+### Element.matches()
+
+Checks if the element satisfies some given css selectors. returns boolean.

@@ -11,6 +11,13 @@ export const clearResults = () => {
     elements.searchResultsPages.innerHTML = '';
 };
 
+export const highlightSelectedRecipe = id => {
+    const allRecipes = Array.from(document.querySelectorAll('.results__link'));
+    allRecipes.forEach(el => el.classList.remove('results__link--active'));
+
+    document.querySelector(`a[href="#${id}"]`).classList.add('results__link--active');
+};
+
 const limitRecipeTitle = (title, limit = '17') => {
     const newTitle = [];
     if (title.length > limit) {
@@ -67,7 +74,7 @@ const renderButtons = (page, numResults, resultsPerPage) => {
     elements.searchResultsPages.insertAdjacentHTML('afterbegin', button);
 };
 
-export const renderResults = (recipes, page = 2, recipesPerPage = 10) => {
+export const renderResults = (recipes, page = 1, recipesPerPage = 10) => {
     const start = recipesPerPage * (page - 1);
     const end = recipesPerPage * page;
 
