@@ -129,7 +129,7 @@ switch (true) {
     console.log('you think you\'re so hard');
     break;
   default :
-    console.log('you old fucker');
+    console.log('you old hag');
 }
 
 /*

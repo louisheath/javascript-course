@@ -78,12 +78,11 @@ var john = {
   foo : function() {
     console.log(this);
     console.log('That makes sense, as we\'re in a method');
-/*
     function bar() {
       console.log(this);
-      console.log('This is fucked up. Apparently this isn\'t in the method');
+      console.log('This is messed up. Apparently this isn\'t in the method');
     }
-    bar();*/
+    bar();
   }
 };
 

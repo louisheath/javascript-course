@@ -82,20 +82,3 @@ We configure Babel with the dot file '.babelrc'
 We are using axios instead of `fetch()` for API calls because it automatically converts the result to JSON, and it provides better error handling.
 
 `npm install axiom --save`
-
-# JavaScript
-
-### Element.closest()
-
-Given a css selector as paramater, it finds the nearest ancestor matching that selector
-
-### data.goto
-
-Placing this in an HTML element allows us to store data in the template.
-
-E.g. `<... data-foo=1 />` can be retrieved in JS with `const foo = el.datasets.foo;`
-
-
-### Element.matches()
-
-Checks if the element satisfies some given css selectors. returns boolean.
