@@ -47,7 +47,7 @@ function declaration() {
 }
 
 const expression = () => {
-    console.log('I cannot be called early);
+    console.log('I cannot be called early');
 };
 ```
 
@@ -131,7 +131,7 @@ Both are array methods, but map returns a new array.
 This is not ideal for Arrays as order is not guaranteed, and the looping variable is the index, rather than the value.
 
 ```js
-for (let i of arr) {
+for (let i in arr) {
     console.log(arr[ i ])
 }
 ```
@@ -184,7 +184,7 @@ E.g. `<... data-foo=1 />` can be retrieved in JS with `const foo = el.datasets.f
 
 `let` and `const` are block scoped, rather than function scoped. This includes `for` loops and `if else` statements.
 
-Also, despite being hoisted within theit block, they cannot be used until initiated. Before then they are in a 'temporal dead zone'.
+Also, despite being hoisted within their block, they cannot be used until initiated. Before then they are in a 'temporal dead zone'.
 
 `const` cannot be reassigned, however can be mutated via methods such as `pop()`.
 
@@ -204,8 +204,6 @@ Variables can only be declared with `let` once, otherwise an error will be throw
 Arrow functions do not have a lexical `this` and so borrow it from their surrounding scope.
 
 This means that the `arguments` object within an arrow function are the arguments belonging to the parent scope.
-
-i.e. `john.speak()` in the example above would not function.
 
 However arrow functions can *sort of* be used to create methods within an object **with** a bound `this` keywork, as shown below.
 
@@ -245,10 +243,11 @@ const { firstName: a, lastName: b } = obj;
 
 ### Array features
 
-`Array.from()` allows easy conversion, e.g from a NodeList.
+`Array.from()` allows easy conversion to an Array, e.g from a NodeList when working with the DOM.
 
-- `find()`
-- `findIndex()`
+This allows us to use array methods such as `forEach` and `map`. The latter builds a new array.
+
+`find()` and `findIndex()` take a callback and return the first element to satisfy it.
 
 ### Spread operator
 
@@ -285,7 +284,7 @@ Maps are a new key-value data structure whose keys can be strings, numbers, bool
 They have more functionality than objects:
 - the flexibility in key data types allows for complex use cases
 - they are iterable (`.forEach()`)
-- the size property can be useful
+- the size property can be more useful than `Object.keys(obj).length`
 - order is preserved
 
 However objects are lower level and often more optimised for speed.
@@ -335,7 +334,7 @@ class Athlete extends Person {
 
 ### Reduce
 
-Essential `foldl` from Haskell. Not new to ES6.
+Essentially `foldl` from Haskell. Not new to ES6.
 
 ```js
 const sum = arr.reduce((prev, cur, index) =>
@@ -436,7 +435,7 @@ getXandY().then( ... );
 
 ### ajax
 
-Asynchronous Javascript And Xml
+Stands for Asynchronous Javascript And Xml
 
 'Same Origin Policy' prevents any requests to external domains.
 
@@ -444,8 +443,7 @@ APIs must implement Cross Origin Resource Sharing CORS to avoid SOP. It can also
 
 ```js
 async function getGitHubDetails(username) {
-    const result = await fetch
-    (`https://api.github.com/users/${username}`);
+    const result = await fetch(`https://api.github.com/users/${username}`);
  
     //...
 }
