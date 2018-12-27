@@ -41,7 +41,7 @@ Though function *expressions* are hoisted, they are instantiated as `undefined` 
 
 Function *declarations* will have a pointer assigned to them, and so can be called early.
 
-```
+```js
 function declaration() {
     console.log('I can be called early');
 }
@@ -91,7 +91,7 @@ An inner function *always* has access to the variables and parameters of its out
 
 Object methods can be borrowed in various ways.
 
-```
+```js
 const john = {
     name: 'john',
     speak: function(a, b) {
@@ -109,7 +109,7 @@ const emily = {
 
 `bind()` allows the currying of parameters, like in Haskell.
 
-```
+```js
 john.speak.call(emily, 'cats', 'dogs');
 
 john.speak.apply(emily, ['cats', 'dogs']);
@@ -130,7 +130,7 @@ Both are array methods, but map returns a new array.
 
 This is not ideal for Arrays as order is not guaranteed, and the looping variable is the index, rather than the value.
 
-```
+```js
 for (let i of arr) {
     console.log(arr[ i ])
 }
@@ -138,7 +138,7 @@ for (let i of arr) {
 
 `for ... of` iterates over iterable collections. This does not include Objects. It is useful however for arrays and strings.
 
-```
+```js
 for (let item of arr) {
     console.log(item);
 }
@@ -203,13 +203,35 @@ Variables can only be declared with `let` once, otherwise an error will be throw
 
 Arrow functions do not have a lexical `this` and so borrow it from their surrounding scope.
 
+This means that the `arguments` object within an arrow function are the arguments belonging to the parent scope.
+
 i.e. `john.speak()` in the example above would not function.
+
+However arrow functions can *sort of* be used to create methods within an object **with** a bound `this` keywork, as shown below.
+
+```js
+let user = {
+    name: 'John',
+    sayHi () {
+        console.log(`Hi, i'm ${this.name}`);
+        // John
+        console.log(arguments);
+        // args passed into sayHi
+    },
+    sayHiBad: () => {
+        console.log(`Hi, i'm ${this.name}`);
+        // undefined
+        console.log(arguments);
+        // global args
+    }
+}
+```
 
 ### Destructuring
 
 Like in python, we can break up a data structure into multiple variables
 
-```
+```js
 const [name, age] = ['John', 26];
 
 const obj = {
@@ -232,7 +254,7 @@ const { firstName: a, lastName: b } = obj;
 
 Used for expanding elements of an array
 
-```
+```js
 const ages = [ 18, 30, 12, 21 ];
 
 const moreAges = [ 17, 25, ...ages ];
@@ -242,7 +264,7 @@ const moreAges = [ 17, 25, ...ages ];
 
 The inverse of the spread operator - allows us to combine an arbitrary number of parameters into an array.
 
-```
+```js
 function isFullAge(limit, ...years) {
   years.forEach(cur => console.log((2018 - cur) >= limit));
 }
@@ -250,7 +272,7 @@ function isFullAge(limit, ...years) {
 
 ### Default parameters
 
-```
+```js
 function(name, age = 20) {
     console.log('age will default to 20 if undefined');
 }
@@ -270,7 +292,7 @@ However objects are lower level and often more optimised for speed.
 
 Objects also support inner logic (with the `this` keyword)
 
-```
+```js
 const question = new Map();
 
 question.set(true, 'foo');
@@ -292,7 +314,7 @@ Allow for static methods.
 
 Class definitions are not hoisted, unlike function constructors.
 
-```
+```js
 class Person {
     constructor(name) {
         this.name = name;
@@ -315,7 +337,7 @@ class Athlete extends Person {
 
 Essential `foldl` from Haskell. Not new to ES6.
 
-```
+```js
 const sum = arr.reduce((prev, cur, index) =>
   prev + cur, 0);
 
@@ -331,20 +353,20 @@ const sum = arr.reduce((prev, cur, index) =>
 
 In NodeJS, packages are imported via `require()`. In ES6 we can attach them with `import`, and we can also make our own modules within the project.
 
-```
+```js
 // Export.js
 export default class Export {
     constructor(...
 };
 ```
-```
+```js
 // logic.js
 export const important = 123;
 export const myMethod = {} => {
     ...
 };
 ```
-```
+```js
 // app.js
 import Export from './Export';
 import { important, myMethod } from './logic';
@@ -367,7 +389,7 @@ A `Promise` is an object that tracks whether or not a certain event has happened
 
 A waiting promise is 'pending', and once complete it is 'settled' or 'resolved'. A resolved promise can be 'fulfilled' or 'rejected'.
 
-```
+```js
 const getX = () => {
     return new Promise((resolve, reject) => {
         $.ajax({
@@ -396,7 +418,7 @@ getX()
 
 An async function returns a promise.
 
-```
+```js
 async function getXandY() {
     try {
         const x = await getX();
@@ -420,7 +442,7 @@ Asynchronous Javascript And Xml
 
 APIs must implement Cross Origin Resource Sharing CORS to avoid SOP. It can also be avoided by making the request on the server side.
 
-```
+```js
 async function getGitHubDetails(username) {
     const result = await fetch
     (`https://api.github.com/users/${username}`);
